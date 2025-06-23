@@ -1,6 +1,7 @@
 site_name: my-knowledge-base
-site_url: https://jiangliangstar.github.io/obsidian-knowledge-base/
+site_url: https://jiangliangstar.github.io/my-knowledge-base/
 theme:
+
   name: material
   features:
     - navigation.tabs
