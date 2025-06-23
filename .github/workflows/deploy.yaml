@@ -1,4 +1,4 @@
-name: Publish Obsidian Knowledge Base
+name: my-knowledge-base
 on:
   push:
     branches: [ main ]
