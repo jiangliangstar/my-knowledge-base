@@ -1,13 +1,36 @@
 site_name: 我的知识库
+site_url: https://<你的用户名>.github.io/obsidian-knowledge-base/
 theme:
-  name: material            # 使用 Material 主题
+  name: material
   features:
     - navigation.tabs
     - search.suggest
+    - content.code.annotate
+    - content.tabs
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+    - scheme: dark
+      primary: deep purple
+      accent: blue
+
 plugins:
   - search
+  - git-revision-date-localized
+  - macros
+
+extra_css:
+  - css/custom.css
+
 nav:
   - 首页: index.md
-  - 笔记: 
+  - 学习笔记:
       - Python: notes/python.md
-  - 面试题: interview/algorithms.md
+      - 算法: notes/algorithms.md
+  - 面试题库:
+      - 算法题: interviews/algorithms.md
+      - 系统设计: interviews/system-design.md
+  - 问题记录:
+      - 开发问题: problems/development.md
+      - 部署问题: problems/deployment.md

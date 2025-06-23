@@ -1,16 +1,37 @@
-name: Deploy to GitHub Pages
+name: Publish Obsidian Knowledge Base
 on:
   push:
-    branches: [ main ]      # 推送到 main 分支时触发
+    branches: [ main ]
+  schedule:
+    # 每周一自动更新
+    - cron: '0 9 * * 1'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout Repository
+        uses: actions/checkout@v4
         with:
-          python-version: "3.x"
-      - run: pip install mkdocs mkdocs-material
-      - run: mkdocs gh-deploy --force  # 强制部署到 gh-pages 分支
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Install MkDocs and Plugins
+        run: |
+          pip install mkdocs mkdocs-material 
+          pip install mkdocs-git-revision-date-localized-plugin
+          pip install mkdocs-macros-plugin
+      
+      # 可选：添加自动内容更新脚本
+      - name: Update Content (Optional)
+        run: |
+          python scripts/update_content.py
+      
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动使用内置 Token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,15 @@
+/* 优化 Obsidian 特有的双链样式 */
+.wikilink {
+  background-color: #e3f2fd;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  border-bottom: 1px dashed #90caf9;
+}
+
+/* 适配 Obsidian 的 callout 样式 */
+div.admonition {
+  border-left: 4px solid #2196f3;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background-color: #e3f2fd;
+}
