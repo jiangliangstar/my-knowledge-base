@@ -16,7 +16,7 @@ nav:
 # 插件
 plugins:
   - search
-  # - markdownextradata  # 支持元数据
+  - markdownextradata  # 支持元数据
 
 # 排除 Obsidian 系统文件
 exclude_docs: |
