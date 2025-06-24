@@ -1,0 +1,25 @@
+site_name: My Knowledge Base  # 网站标题
+theme:
+  name: gitbook  # 使用 GitBook 主题
+  features:
+    - navigation.top  # 顶部导航栏
+    - search.suggest  # 搜索建议
+    - toc.integrate   # 集成目录
+
+# 导航配置（示例）
+nav:
+  - Home: index.md
+  - 笔记分类:
+      - 编程: programming/python.md
+      - 数学: math/calculus.md
+
+# 插件
+plugins:
+  - search
+  - markdownextradata  # 支持元数据
+
+# 排除 Obsidian 系统文件
+exclude_docs: |
+  .obsidian/**
+  .trash/**
+  *.canvas
