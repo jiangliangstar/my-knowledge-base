@@ -3,16 +3,36 @@ on:
   push:
     branches:
       - main  # 触发分支
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 关键权限设置
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整提交历史
+
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
-      - run: pip install mkdocs mkdocs-material
-      - run: pip install mkdocs-markdownextradata-plugin  # 添加这行
-      - run: pip install mkdocs-macros-plugin
-      - run: pip install mkdocs mkdocs-gitbook
-      - run: mkdocs gh-deploy --force
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install mkdocs 
+          pip install mkdocs-material
+          pip install mkdocs-markdownextradata-plugin
+          pip install mkdocs-macros-plugin
+          pip install mkdocs-gitbook
+
+      - name: Verify docs structure
+        run: |
+          mkdir -p docs  # 确保docs目录存在
+          [ -f docs/index.md ] || echo "# Welcome" > docs/index.md
+
+      - name: Build and Deploy
+        run: mkdocs gh-deploy --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动生成的token
