@@ -17,7 +17,8 @@ nav:
 plugins:
   - search
   - markdownextradata  # 支持元数据
-
+extra_css:
+  - assets/css/custom.css
 # 排除 Obsidian 系统文件
 exclude_docs: |
   .obsidian/**
